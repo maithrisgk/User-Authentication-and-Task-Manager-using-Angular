@@ -1,0 +1,23 @@
+<div class="row">
+
+  <div class="col-md-12">
+<input type="text" class="form-control" placeholder="Search.." [(ngModel)]="query">
+
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-md-12">
+  
+        <div *ngIf="tasks.length===0" class="well">
+            No Tasks to Show.
+        </div>
+            <ul class="list-group">
+              <li appHighlight class="list-group-item" *ngFor= "let task of (tasks | search : query)">
+                <app-task-item [taskItem]="task"></app-task-item>
+              </li>
+            </ul>
+      
+  </div>
+</div>
