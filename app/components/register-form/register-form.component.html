@@ -1,0 +1,33 @@
+<form [formGroup]="registerForm">
+<div class="form-group" [ngClass]="{'has-error':registerForm.get('name').touched && registerForm.get('name').invalid}">
+  <label for="name" class="control-label"> Name* </label>
+  <input type="text" id="name" class="form-control" formControlName="name">
+  <span *ngIf="registerForm.get('name').touched && registerForm.get('name').invalid" class="help-block"> Name can't be blank </span>
+</div>  
+
+<div class="form-group" [ngClass]="{'has-error':registerForm.get('email').touched && registerForm.get('email').invalid}">
+    <label for="email" class="control-label"> Email* </label>
+    <input type="email" id="email" class="form-control" formControlName="email">
+    <span *ngIf= "registerForm.get('email').touched && registerForm.get('email').hasError('required')" class="help-block"> Email can't be blank </span>
+    <span *ngIf= "registerForm.get('email').touched && registerForm.get('email').hasError('email')" class="help-block"> Email must be valid </span>
+    <!-- {{registerForm.get('email').errors | json }} -->
+  </div>  
+
+  <div class="form-group" [ngClass]="{'has-error':registerForm.get('password').touched && registerForm.get('password').invalid}">
+      <label for="password" class="control-label"> Password* </label>
+      <input type="password" id="password" class="form-control" formControlName="password">
+      <span *ngIf="registerForm.get('password').touched && registerForm.get('password').hasError('required')" class="help-block"> Password can't be blank </span>
+      <span *ngIf="registerForm.get('password').touched && registerForm.get('password').hasError('symbol')" class="help-block"> Password must contain @ </span>
+    </div>  
+
+    <div class="form-group" [ngClass]="{'has-error':registerForm.get('confirmPassword').touched && registerForm.get('confirmPassword').invalid}">
+        <label for="confirmPassword" class="control-label"> Confirm Password </label>
+        <input type="password" id="confirmPassword" class="form-control" formControlName="confirmPassword">
+        <span *ngIf="registerForm.get('confirmPassword').touched && registerForm.get('confirmPassword').invalid" class="help-block"> Password doesn't match </span>
+      </div>  
+
+      <div class="form-group">
+        <button class="btn btn-primary btn-lg btn-block"> Register </button>
+        <button type="button" [routerLink]="['/login']" class="btn btn-link btn-block btn-lg"> Back to Login </button>
+      </div>/div>
+</form>
